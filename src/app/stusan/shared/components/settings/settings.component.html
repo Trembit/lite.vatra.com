@@ -1,0 +1,38 @@
+<form [formGroup]="form">
+  <div class="container">
+    <stusan-icon icon="close" class="close" (click)="close()"></stusan-icon>
+    <h1>Settings</h1>
+    <div class="scrollable">
+      <!-- <div class="theme">
+        <stusan-icon icon="theme"></stusan-icon>
+        <span>Switch to {{!!form.get('theme')?.value ? 'light' : 'dark'}} style</span>
+        <thevatra-toggle formControlName="theme"></thevatra-toggle>
+      </div> -->
+      <div class="camera">
+        <div class="caption">
+          <stusan-icon icon="cam-on"></stusan-icon>
+          <span>
+            Web camera
+          </span>
+        </div>
+        <video class="preview" #preview muted disablepictureinpicture></video>
+        <thevatra-dropdown formControlName="camera" [options]="videoInputs"></thevatra-dropdown>
+        <ng-container *ngIf="resolutionSelectionAvailable">
+          <thevatra-dropdown class="resolutionSelect" formControlName="resolution" [options]="videoResolutions">
+          </thevatra-dropdown>
+          <span class="red" *ngIf="resolutionFailed">Selected resolution currently unavailable. Try another</span>
+        </ng-container>
+        <div class="simulcast" *ngIf="resolutionSelectionAvailable">
+          <span>Simulcast</span>
+          <thevatra-toggle formControlName="simulcast"></thevatra-toggle>
+        </div>
+      </div>
+      <div class="audio">
+        <div class="caption">
+          <stusan-icon icon="mic-on"></stusan-icon>Microphone
+        </div>
+        <thevatra-dropdown formControlName="mic" [options]="audioInputs"></thevatra-dropdown>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,103 @@
+:host {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 340px;
+    border-radius: 10px;
+    background-color: var(--background-color);
+    .close {
+      align-self: flex-end;
+      align-self: flex-end;
+      margin-right: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      fill: #261362;
+    }
+    h1 {
+      color: rgba(38, 19, 98, 1);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 18px;
+      border-bottom: 1px solid rgba(25, 27, 40, 0.14);
+      padding-bottom: 26px;
+      width: 100%;
+      text-align: center;
+    }
+    .red {
+      color: red;
+      padding-top: 8px;
+    }
+    .scrollable {
+      max-width: 100%;
+      max-height: calc(100vh); //  - 195px
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: calc(100% - 60px);
+        padding: 0px 0px;
+        stusan-icon {
+          width: 21px;
+          height: 21px;
+        }
+      }
+
+      div.theme {
+        padding-top: 38px;
+        padding-bottom: 38px;
+        border-bottom: 1px solid rgba(25, 27, 40, 0.14);
+        span {
+          flex-grow: 1;
+          padding-left: 15px;
+        }
+      }
+      div.camera {
+        flex-flow: column;
+        padding-top: 32px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid rgba(25, 27, 40, 0.14);
+        .caption {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          span {
+            padding-left: 10px;
+          }
+        }
+        .preview {
+          margin-top: 10px;
+          margin-bottom: 15px;
+          max-width: 100%;
+          border-radius: 20px;
+        }
+        .resolutionSelect {
+          margin-top: 20px;
+        }
+        .simulcast {
+          display: flex;
+          width: 100%;
+          margin-top: 20px;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+      div.audio {
+        flex-flow: column;
+        padding-top: 28px;
+        padding-bottom: 45px;
+        .caption {
+          display: flex;
+          align-items: center;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

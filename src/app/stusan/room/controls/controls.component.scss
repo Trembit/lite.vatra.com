@@ -1,0 +1,127 @@
+:host {
+  display: flex;
+  flex: 0 0 auto;
+  height: var(--controls-height);
+  margin-top: 10px;
+
+  .main-controls {
+    display: flex;
+    flex: 1 1 auto;
+
+    &__left,
+    &__right {
+      background-color: var(--background-color-controls);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex: 1 1 auto;
+    }
+
+    &__left {
+      justify-content: flex-end;
+    }
+
+    &__center {
+      display: flex;
+      flex: 0 0 auto;
+      justify-content: center;
+      position: relative;
+      width: 140px;
+    }
+  }
+
+  .control-button-outer {
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    min-width: 73px;
+
+    &--invite-participant {
+      position: relative;
+    }
+  }
+
+  .finish-call {
+    background-color: #ffe6e2;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    height: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: -7px;
+    width: 60px;
+  }
+
+  .finish-call-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+
+  .invite-participant {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #fc8b01;
+    border-radius: 20px;
+    box-shadow: 0px 0px 0px 4px rgba(252, 139, 1, 0.33);
+    color: #1e2021;
+    display: flex;
+    font-size: 14px;
+    height: 40px;
+    line-height: 18px;
+    padding: 0 20px;
+    position: absolute;
+    top: -56px;
+    white-space: nowrap;
+
+    &--success {
+      border-color: #675a91;
+      box-shadow: 0px 0px 0px 4px rgba(103, 90, 145, 0.33);
+      color: #675a91;
+
+      stusan-icon {
+        margin-left: 25px;
+      }
+    }
+
+    &__copy {
+      background-color: transparent;
+      border: none;
+      margin-left: 25px;
+    }
+  }
+
+  .side-controls {
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex: 0 0 auto;
+    width: var(--side-menu-width);
+
+    &__item {
+      align-content: center;
+      background-color: var(--background-color-controls);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      width: 50%;
+      transition: 0.5s background-color, border-top-color;
+
+      &:last-child {
+        border-left: 1px solid var(--border-color);
+      }
+
+      &--active {
+        background-color: var(--background-color-aside);
+        border-top-color: transparent;
+      }
+
+      ::ng-deep .icon-outer {
+        border: 3px solid #fff;
+      }
+    }
+  }
+  .wait {
+    cursor: wait;
+    user-select: none;
+  }
+}

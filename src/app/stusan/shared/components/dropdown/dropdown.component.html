@@ -1,0 +1,12 @@
+<div class="origin" #origin (click)="toggle()" [class.opened]="opened" [title]="textValue">
+  <span>
+    {{textValue}}
+  </span>
+  <stusan-icon icon="circle-arrow-down"></stusan-icon>
+</div>
+<ng-template #dropdown>
+  <div class="dropdown-container">
+    <div *ngFor="let option of options" class="option" (click)="select(option.value)" [title]="option.label">
+      {{option.label}}</div>
+  </div>
+</ng-template>

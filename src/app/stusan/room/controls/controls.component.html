@@ -1,0 +1,99 @@
+<div class="main-controls">
+  <div class="main-controls__left">
+    <div class="control-button-outer">
+      <stusan-control-button label="Mic" [iconBg]="stateService.audioEnabled ? '#F2FBFF' : '#FE724C'"
+        *ngIf="!stateService.isCamBanned"
+        [ariaLabel]="stateService.audioEnabled ? 'Mute' : 'Unmute'" (click)="toggleMic()" [class.wait]="micMuting">
+        <stusan-icon [icon]="stateService.audioEnabled ? 'mic-on' : 'mic-off'" style="width: 24px; height: 24px;"
+          [style.fill]="stateService.audioEnabled ? '#261362' : '#fff'"></stusan-icon>
+      </stusan-control-button>
+    </div>
+
+    <div class="control-button-outer">
+      <stusan-control-button label="Cam" [iconBg]="stateService.videoEnabled ? '#F2FBFF' : '#FE724C'"
+        *ngIf="!stateService.isCamBanned"
+        [ariaLabel]="stateService.videoEnabled ? 'Stop Cam' : 'Start Cam'" (click)="toggleCam()"
+        [class.wait]="cameraMuting">
+        <stusan-icon [icon]="stateService.videoEnabled ? 'cam-on' : 'cam-off'" style="width: 24px; height: 24px;"
+          [style.fill]="stateService.videoEnabled ? '#261362' : '#fff'"></stusan-icon>
+      </stusan-control-button>
+    </div>
+
+    <!-- <div class="control-button-outer">
+      <stusan-control-button label="Mirror" (click)="toggleMirror()">
+        <stusan-icon icon="mirror" style="width: 19px; height: 12px; fill: #261362;"></stusan-icon>
+      </stusan-control-button>
+    </div> -->
+  </div>
+  <div class="main-controls__center">
+    <svg width="140" height="79" viewBox="0 0 140 79" class="finish-call-bg" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1 0.5H0.5V1V78V78.5H1H141H141.5V78V1V0.5H141H139.9H139.879L139.857 0.501827C132.84 1.10327 127.387 2.13446 122.862 4.41606C118.321 6.70577 114.757 10.2325 111.47 15.7439L111.461 15.7597L111.453 15.7762C111.365 15.9512 111.254 16.1306 111.126 16.3351C111.126 16.3351 111.126 16.3352 111.126 16.3353L111.12 16.3451C111.002 16.5336 110.87 16.7448 110.761 16.9608C106.108 24.8654 100.836 33.7618 94.4314 40.7497C88.0269 47.7375 80.5476 52.7529 71.4932 53H70.5068C61.4524 52.7529 53.973 47.7375 47.5558 40.7493C41.1387 33.7611 35.842 24.8648 31.1388 16.9594C31.0297 16.7439 30.8979 16.5331 30.7801 16.3445L30.7741 16.335C30.6465 16.1308 30.5347 15.9512 30.4471 15.7762L30.4396 15.7612L30.4312 15.7468C27.1937 10.233 23.6286 6.70559 19.0746 4.41581C14.5373 2.1344 9.05964 1.10325 2.0427 0.501827L2.02139 0.5H2H1Z"
+        fill="var(--border-color)" stroke="var(--border-color)" />
+      <path
+        d="M1 1H0V80H142V1H140.9C126.9 2.19995 118.4 5.1001 111.9 16C111.8 16.2 111.675 16.3999 111.55 16.6001C111.425 16.8 111.3 17 111.2 17.2C101.9 33 90 53 71.5 53.5H70.5C52 53 40.1001 33 30.7002 17.2C30.5 16.8 30.2002 16.3999 30 16C23.6001 5.1001 15 2.19995 1 1Z"
+        fill="var(--background-color-controls)" />
+    </svg>
+
+    <button class="finish-call" (click)="finishCall()">
+      <stusan-icon icon="finish-call" style="width: 24px; height: 24px; fill: #FC573B;"></stusan-icon>
+    </button>
+  </div>
+  <div class="main-controls__right">
+    <div class="control-button-outer">
+      <stusan-control-button label="Share"
+        *ngIf="!stateService.isCamBanned"
+        [iconBg]="(stateService.isScreenShareEnabled$ | async) ? '#FE724C' : '#F2FBFF'"
+        [ariaLabel]="(stateService.isScreenShareEnabled$ | async) ? 'Stop  screen sharing' : 'Start screen sharing'"
+        (click)="toogleShareScreen()">
+        <stusan-icon icon="share" style="width: 22px; height: 22px; fill: #261362;"
+          [style.fill]="(stateService.isScreenShareEnabled$ | async) ? '#fff' : '#261362'"></stusan-icon>
+      </stusan-control-button>
+    </div>
+
+    <div class="control-button-outer control-button-outer--invite-participant">
+      <div *ngIf="this.isInviteParticipantShown | async" class="invite-participant">
+        <span>Link: {{ roomUrl }}</span>
+        <button class="invite-participant__copy" (click)="copyRoomUrl()" aria-label="Copy room url">
+          <stusan-icon icon="copy" style="width: 24px; height: 24px; fill: #FC8B01;"></stusan-icon>
+        </button>
+      </div>
+
+      <div *ngIf="this.isInviteParticipantSuccessShown | async" class="invite-participant invite-participant--success">
+        <span>Link copied to clipboard</span>
+        <stusan-icon icon="check" style="width: 17px; height: 17px; fill: #675A91;"></stusan-icon>
+      </div>
+
+      <stusan-control-button label="Invite" (click)="toggleInviteParticipant()">
+        <stusan-icon icon="add-user" style="width: 24px; height: 24px; fill: #261362;"></stusan-icon>
+      </stusan-control-button>
+    </div>
+
+    <!-- <div class="control-button-outer">
+      <stusan-control-button label="Hand" (click)="raiseHand()">
+        <stusan-icon icon="hand" style="width: 22px; height: 22px; fill: #261362;"></stusan-icon>
+      </stusan-control-button>
+    </div> -->
+  </div>
+</div>
+
+<div class="side-controls">
+  <div class="side-controls__item" [class.side-controls__item--active]="(this.stateService.isChatShown$ | async)">
+    <!-- <stusan-control-button label="Chat" [iconBg]="(this.stateService.isChatShown$ | async) ? '#261362' : '#FFFFFF'"
+      [ariaLabel]="(this.stateService.isChatShown$ | async) ? 'Show chat' : 'Hide chat'" (click)="toggleChat()">
+      <stusan-icon icon="chat" style="width: 22px; height: 22px;"
+        [style.fill]="(this.stateService.isChatShown$ | async) ? '#fff' : '#261362'"></stusan-icon>
+    </stusan-control-button> -->
+  </div>
+  <div class="side-controls__item" [class.side-controls__item--active]="(this.stateService.isSettingsShown$ | async)">
+    <stusan-control-button label="Settings" #settingsButton
+      *ngIf="!stateService.isCamBanned"
+      [iconBg]="(this.stateService.isSettingsShown$ | async) ? '#261362' : '#FFFFFF'"
+      [ariaLabel]="(this.stateService.isSettingsShown$ | async) ? 'Show settings' : 'Hide settings'"
+      (click)="toggleSettings()">
+      <stusan-icon icon="settings" style="width: 22px; height: 22px;"
+        [style.fill]="(this.stateService.isSettingsShown$ | async) ? '#fff' : '#261362'"></stusan-icon>
+    </stusan-control-button>
+  </div>
+</div>

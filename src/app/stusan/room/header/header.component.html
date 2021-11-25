@@ -1,0 +1,30 @@
+<div class="logo-container">
+  <img src="{{ customConfig.roomLogo }}" [ngClass]="{ 'sirius': isSirius }" alt="" class="logo">
+  <span *ngIf="!isSirius" title="{{ janusService.getLocalUserId() }}">{{roomName}}</span>
+  <span class="users">
+    <stusan-icon icon="users" class="users__icon"></stusan-icon>
+    <span>{{ janusService.userIds.length }}</span>
+  </span>
+</div>
+<div class="live">
+  <span class="live__record"></span>
+  LIVE {{ startTimer$ | async }}
+</div>
+<div class="layouts">
+  View:
+  <button class="layouts__item"
+    [class.layouts__item--active]="(stateService.layoutType$ | async) === LayoutTypeEnum.Leader"
+    (click)="setLayoutType(LayoutTypeEnum.Leader)">
+    <stusan-icon icon="layout-leader"></stusan-icon>
+  </button>
+
+  <button class="layouts__item"
+    [class.layouts__item--active]="(stateService.layoutType$ | async) === LayoutTypeEnum.Tile"
+    (click)="setLayoutType(LayoutTypeEnum.Tile)">
+    <stusan-icon icon="layout-tile"></stusan-icon>
+  </button>
+
+  <!-- <button class="layout-dropdown-arrow">
+    <stusan-icon icon="circle-arrow-down"></stusan-icon>
+  </button> -->
+</div>

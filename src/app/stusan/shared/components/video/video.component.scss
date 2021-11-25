@@ -1,0 +1,112 @@
+:host {
+  aspect-ratio: 16 / 9;
+  border: 5px solid transparent;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-width: 506px;
+  max-height: 100%;
+  .tech-info {
+    border-radius: 10px;
+    background-color: var(--icon-bg-color);
+    color: var(--avatar-text-color);
+    display: block;
+    font-size: 12px;
+    line-height: 16px;
+    width: 190px;
+    height: 80px;
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    padding: 7px;
+  }
+
+  .container {
+    height: 100%;
+
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    background-color: var(--background-color-controls);
+    position: relative;
+    .name-wrapper {
+      background-color: rgba(27, 29, 45, 0.5);
+      position: absolute;
+      padding: 15px 20px;
+      bottom: 0;
+      left: 0;
+      border-top-right-radius: 14px;
+      height: 48px;
+      .name {
+        color: #ffffff;
+        min-width: 40px;
+        display: block;
+      }
+    }
+    video {
+      height: 100%;
+      width: 100%;
+      &.mirrored {
+        transform: rotateY(180deg);
+      }
+    }
+    ::ng-deep .s-control-btn {
+      background-color: var(--icon-bg-color);
+    }
+    .network {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      opacity: 0.1;
+    }
+    .cam-off {
+      position: absolute;
+      bottom: 16px;
+      right: 62px;
+    }
+    .mic-off {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+    }
+    .fullscreen {
+      position: absolute;
+      fill: white;
+      size: 16px;
+      width: 16px;
+      top: 16px;
+      right: 26px;
+      height: 16px;
+      opacity: 0.1;
+      transition: all 0.5s;
+      cursor: pointer;
+    }
+    &:hover {
+      .network, .fullscreen {
+        opacity: 1;
+      }
+    }
+  }
+  &:fullscreen {
+    .fullscreen {
+      display: none;
+    }
+  }
+  .avatarChar {
+    position: absolute;
+    margin: 0 auto;
+    color: var(--avatar-text-color);
+    font-size: 170px;
+    &.other {
+      font-size: 70px;
+    }
+  }
+}
+
+:host-context(div.others) {
+  .fullscreen {
+    display: none;
+  }
+}

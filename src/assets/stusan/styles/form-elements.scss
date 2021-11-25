@@ -1,0 +1,58 @@
+:root {
+  --form-element-border-color: #675A91;
+  --form-element-height: 40px;
+  --form-element-line-height: 18px;
+  --form-element-vertical-padding: calc((var(--form-element-height) - var(--form-element-line-height)) / 2);
+  --form-element-gorizontal-padding: 20px;
+  --input-text-float-placeholder-bottom: 3px;
+}
+
+.input-text {
+  margin-top: calc(var(--input-text-float-placeholder-bottom) * 2 + var(--form-element-line-height));
+  position: relative;
+
+  &__field {
+    border: 1px solid var(--form-element-border-color);
+    border-radius: calc(var(--form-element-height) / 2);
+    line-height: var(--form-element-line-height);
+    padding: var(--form-element-vertical-padding) var(--form-element-gorizontal-padding);
+    width: 100%;
+
+    &:focus {
+      box-shadow: 0 0 4px var(--form-element-border-color);
+      outline: none;
+    }
+
+    &:focus ~ .input-text__placeholder,
+    &:not(:placeholder-shown) ~ .input-text__placeholder {
+      top: calc(var(--form-element-line-height) * -1 + var(--input-text-float-placeholder-bottom) * -1);
+    }
+  }
+
+  &__placeholder {
+    position: absolute;
+    left: var(--form-element-gorizontal-padding);
+    line-height: var(--form-element-line-height);
+    pointer-events: none;
+    top: calc(var(--form-element-line-height) * -1 + var(--input-text-float-placeholder-bottom) * -1);
+    transition: all 0.3s;
+  }
+}
+
+.button {
+  background-color: var(--text-color);
+  border: 1px solid var(--text-color);
+  border-radius: calc(var(--form-element-height) / 2);
+  color: #fff;
+  line-height: var(--form-element-line-height);
+  padding: var(--form-element-vertical-padding) var(--form-element-gorizontal-padding);
+  transition: all 0.3s;
+
+  &:disabled {
+    background-color: rgba(#675A91, 0.5);
+    border: 1px solid rgba(#675A91, 0.5);
+    color: var(--text-color);
+    cursor: not-allowed;
+    background-clip: padding-box; // For border opacity
+  }
+}

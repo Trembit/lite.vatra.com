@@ -1,0 +1,39 @@
+// TODO: use variables
+:host {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 14px;
+  cursor: pointer;
+  padding: 0;
+  transition: box-shadow 0.3s;
+  &:hover,
+  &:focus {
+    .icon-outer {
+      box-shadow: 0 0 4px var(--form-element-border-color);
+      outline: none;
+    }
+  }
+
+  .icon-outer {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: #fff;
+    border-radius: 50%;
+    justify-content: center;
+    height: 40px;
+    transition: all 0.3s;
+    width: 40px;
+  }
+
+  .label-text {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    margin-top: 3px;
+  }
+}

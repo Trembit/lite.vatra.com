@@ -1,0 +1,205 @@
+:host {
+  --offset-controls-height: 22px;
+  flex: 1 1 auto;
+
+  &.leader {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+  }
+
+  &.tile {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+  }
+  .only {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .leader-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 100%;
+    .main {
+      height: 75%;
+      flex-grow: 1;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      .only {
+        height: 100%;
+      }
+    }
+    .others {
+      height: 25%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      // width: 100%;
+      position: relative;
+      &.hidden {
+        height: 0px;
+        overflow: hidden;
+        visibility: hidden;
+      }
+      .viewport {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        &.lt-four {
+          justify-content: center;
+          thevatra-video {
+            min-width: unset;
+          }
+        }
+        &.four {
+          thevatra-video {
+            min-width: 25%;
+            width: 25%;
+          }
+        }
+        &.gt-four {
+          thevatra-video {
+            min-width: 23%;
+            width: 23%;
+            height: 100%;
+          }
+        }
+        &.show-three {
+          thevatra-video {
+            min-width: 33.3%;
+          }
+        }
+        &.show-four {
+          thevatra-video {
+            min-width: 25%;
+          }
+        }
+        &.show-five {
+          thevatra-video {
+            min-width: 20%;
+          }
+        }
+      }
+      .scroll {
+        width: 70px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.3);
+        &.hidden {
+          visibility: hidden;
+        }
+        stusan-icon {
+          fill: var(--icon-bg-color);
+          width: 24px;
+          height: 40px;
+        }
+      }
+      .scroll-left {
+        left: 0;
+        stusan-icon {
+          transform: rotate(180deg);
+        }
+      }
+      .scroll-right {
+        right: 0;
+      }
+    }
+  }
+
+  .tiles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+    &.only {
+      thevatra-video {
+        height: 100%;
+        max-width: 100%;
+      }
+    }
+    &.two {
+      thevatra-video {
+        width: 50%;
+        max-width: 50%;
+        margin: 0;
+      }
+    }
+    &.four {
+      thevatra-video {
+        max-width: 50%;
+        height: 50%;
+        max-height: 50%;
+        margin: 0;
+      }
+    }
+    &.three-in-row {
+      thevatra-video {
+        width: 33.3%;
+        max-width: 33.3%;
+      }
+    }
+    &.four-in-row {
+      thevatra-video {
+        width: 25%;
+        max-width: 25%;
+      }
+    }
+    &.five-in-row {
+      thevatra-video {
+        width: 20%;
+        max-width: 50%;
+      }
+    }
+  }
+
+  .scroll-v {
+    width: 330px;
+    height: 70px;
+    position: absolute;
+    left: calc(50% - 165px);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    &.hidden {
+      visibility: hidden;
+    }
+    stusan-icon {
+      fill: var(--icon-bg-color);
+      width: 24px;
+      height: 40px;
+    }
+  }
+  .scroll-up {
+    top: 70px;
+    stusan-icon {
+      transform: rotate(-90deg);
+    }
+  }
+  .scroll-down {
+    bottom: 80px;
+    stusan-icon {
+      transform: rotate(90deg);
+    }
+  }
+}

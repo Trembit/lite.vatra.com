@@ -1,0 +1,45 @@
+<div class="container">
+  <span class="name-wrapper">
+    <span class="name">{{ name }}</span>
+  </span>
+  <video [ngClass]="{'mirrored': isSelfVideo}" [style.display]="mutedCam ? 'none' : ''" #video autoplay playsinline disablepictureinpicture autopictureinpicture="false"></video>
+
+  <img [style.display]="mutedCam ? '' : 'none'" class="avatar" src="/assets/stusan/images/avatar/avatar.{{ stateService.theme }}.{{ layoutName }}.png">
+  <div [style.display]="mutedCam ? '' : 'none'" class="avatarChar {{ layoutName }}">{{ name | firstWord }}</div>
+
+  <div [style.display]="mutedMic ? '' : 'none'" class="control-button-outer mic-off">
+    <stusan-control-button>
+      <stusan-icon icon="mic-off" style="width: 24px; height: 24px;" [style.fill]="'#fff'"></stusan-icon>
+    </stusan-control-button>
+  </div>
+
+  <div class="control-button-outer fullscreen" (click)="fullScreen()" title="Fullscreen">
+    <stusan-control-button>
+      <stusan-icon icon="screen-full" style="width: 24px; height: 24px;" [style.fill]="'#fff'"></stusan-icon>
+    </stusan-control-button>
+  </div>
+
+  <div class="control-button-outer network" (click)="toggleTechInfo($event)" title="Connection indicator">
+    <stusan-control-button>
+      <stusan-icon icon="connection" style="width: 24px; height: 24px;" [style.fill]="'#fff'"></stusan-icon>
+    </stusan-control-button>
+  </div>
+
+  <div class="tech-info" *ngIf="showTech">
+    <div>
+      <span>Resolution: </span> <span *ngIf="techData?.width">{{ techData?.width }} x {{ techData?.height }}</span>
+    </div>
+
+    <div>
+      <span>Frame rate: </span> {{ techData?.frameRate?.toFixed(2) }}
+    </div>
+
+    <div>
+      <span>Video codec: </span> {{ techData?.videoCodec || 'N/A' }}
+    </div>
+
+    <div *ngIf="techData?.bitrate">
+      <span>Bitrate: </span> <span>{{ techData?.bitrate || 'N/A' }} </span>
+    </div>
+  </div>
+</div>

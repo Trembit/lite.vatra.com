@@ -1,0 +1,22 @@
+<ng-container *ngIf="isLoggedIn && !connecting">
+  <div class="main">
+    <stusan-header></stusan-header>
+    <stusan-videos [videos]="janusService.videos$ | async"></stusan-videos>
+    <stusan-controls></stusan-controls>
+  </div>
+  <!-- <div class="side">
+    <stusan-chat></stusan-chat>
+  </div> -->
+</ng-container>
+<div class="loader" *ngIf="connecting">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

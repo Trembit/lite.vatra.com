@@ -1,0 +1,91 @@
+@import "~normalize.css";
+@import "assets/stusan/styles/variables";
+@import "assets/stusan/styles/fonts";
+@import "assets/stusan/styles/form-elements";
+@import "~@angular/cdk/overlay-prebuilt.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Scrolling styles
+::-webkit-scrollbar {
+  width: 10px; // For vertical scrollbars
+  height: 10px; // For horizontal scrollbars
+}
+::-webkit-scrollbar-track {
+  // Track
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  // Handle
+  background: var(--primary-color);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  // Handle on hover
+  background: var(--primary-color-hover);
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+  // Scrolling styles for Firefox
+  scrollbar-color: var(--primary-color) transparent;
+  scrollbar-width: thin;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+p {
+  margin: 10px 0;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+  transition: box-shadow 0.3s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 4px var(--form-element-border-color);
+    outline: none;
+  }
+}
+
+.dialog-backdrop {
+  background: rgba(30, 32, 33, 0.7);
+  opacity: 0.7;
+}
+
+.dropdown-panel {
+  ng-component {
+    width: 100%;
+  }
+}
+
+@media (max-height: 1000px) {
+  .settings-dialog {
+    margin-top: 100px !important;
+  }
+}
+
+@media (max-height: 900px) {
+  .settings-dialog {
+    margin-top: 20px !important;
+    .container {
+      .scrollable {
+        max-height: calc(100vh - 20px) !important;
+      }
+    }
+  }
+}

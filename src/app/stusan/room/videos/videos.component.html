@@ -1,0 +1,33 @@
+<div class="leader-container" *ngIf="layoutType === 'leader'">
+  <div class="main" *ngIf="videosArrayLength" [class.only]="videosArrayLength === 1">
+    <thevatra-video [isHidden]="false" [source]="leader"></thevatra-video>
+  </div>
+  <div class="others" [class.hidden]="othersArrayLength === 0">
+    <div class="scroll scroll-left" [class.hidden]="0 > startIndex - 1" (click)="showPrev()">
+      <stusan-icon icon="arrow"></stusan-icon>
+    </div>
+    <div class="viewport" #sourceWrapper cdkScrollable [ngClass]="'lt-four'"
+      (cdkObserveContent)="othersChanged($event)" [debounce]="100" [cdkObserveContentDisabled]="othersArrayLength < 5">
+      <thevatra-video
+        *ngFor="let source of othersArray; index as i"
+        [hidden]="i < startIndex || i > endIndex"
+        [isHidden]="i < startIndex || i > endIndex"
+        [source]="source"
+        (click)="setLeader(source)"
+        layoutName="other"></thevatra-video>
+    </div>
+    <div class="scroll scroll-right" [class.hidden]="othersArrayLength <= endIndex + 1" (click)="showNext()">
+      <stusan-icon icon="arrow"></stusan-icon>
+    </div>
+  </div>
+</div>
+
+<div class="tiles-container" *ngIf="layoutType === 'tile'" [ngClass]="tilesClasses(videosArrayLength)">
+  <div [class.hidden]="0 > startIndex - 1" class="scroll-v scroll-up" (click)="onPrevTile()"><stusan-icon icon="arrow"></stusan-icon></div>
+
+  <thevatra-video #other [hidden]="v < startIndex || v > startIndex + tileItemsOnScreen - 1"
+    [isHidden]="v < startIndex || v > startIndex + tileItemsOnScreen - 1"
+    *ngFor="let source of videosArray; index as v" [source]="source"></thevatra-video>
+
+    <div [class.hidden]="currentPage + 1 >= pageLimit - 1" class="scroll-v scroll-down" (click)="onNextTile()"><stusan-icon icon="arrow"></stusan-icon></div>
+</div>

@@ -1,0 +1,28 @@
+:root, [data-theme="light"] {
+  --background-color: #F5F4FC;
+  --background-color-controls: #FFF;
+  --background-color-aside: #f2fbff;
+  --text-color: #261362;
+
+  --avatar-text-color: #fff;
+  // TODO: use different border-colors for dark mode
+  --border-color: #F1F1F1;
+
+  --primary-color: var(--text-color);
+  --primary-color-hover: rgba(38, 19, 98, 0.8); // #261362
+
+  --header-height: 69px;
+  --controls-height: 79px;
+  --side-menu-width: 341px;
+  --icon-bg-color: #7D71A1;
+}
+
+[data-theme="dark"] {
+  --background-color: #000;
+  --background-color-controls: #272d2f;
+  --background-color-aside: #1e2021;
+  --text-color: #FFF;
+  --border-color: #272D2F;
+  --avatar-text-color: #272D2F;
+}
+

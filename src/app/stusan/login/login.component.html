@@ -1,0 +1,71 @@
+<video [muted]="true" class="video-preview" #videoPreview autoplay playsinline muted disablepictureinpicture autopictureinpicture="false"
+  [hidden]="!previewStream || !this.stateService.isCamEnabled"></video>
+<div class="login">
+  <div class="login__main" role="main">
+
+    <a *ngIf="!isSirius && customConfig.homeLogo" href="https://trembit.com/" target="_blank">
+      <img class="login__logo" src="{{ customConfig.homeLogo }}">
+    </a>
+
+    <img *ngIf="isSirius && customConfig.homeLogo" class="login__logo" src="{{ customConfig.homeLogo }}">
+
+    <p *ngIf="customConfig.homeShowDescription" class="login__intro">
+      Branded video conferencing for you
+    </p>
+    <p *ngIf="customConfig.homeShowDescription">
+      Set up the camera and jump into the video chat.<br />
+      No account required.
+    </p>
+    <div class="login__meeting-start">Start a new meeting</div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login__form">
+      <div class="input-text">
+        <input type="text" class="input-text__field" formControlName="roomName" placeholder="Please enter room name">
+        <div class="input-text__placeholder">Room name</div>
+      </div>
+
+      <div class="input-text">
+        <input type="text" class="input-text__field" formControlName="userName" placeholder="Please enter your name">
+        <div class="input-text__placeholder">Your name</div>
+      </div>
+
+      <button type="submit" class="button button--create-room" [disabled]="!loginForm.valid">Join
+        room</button>
+    </form>
+
+    <div class="login__options" *ngIf="!stateService.isCamBanned">
+      <div class="login__option">
+        <stusan-control-button [label]="stateService.audioEnabled ? 'Mute' : 'Unmute'"
+          [iconBg]="stateService.audioEnabled ? '#FFF' : '#FE724C'" (click)="toggleMic()">
+          <stusan-icon [icon]="stateService.audioEnabled ? 'mic-on' : 'mic-off'" style="width: 24px; height: 24px;"
+            [style.fill]="stateService.audioEnabled ? '#261362' : '#FFF'"></stusan-icon>
+        </stusan-control-button>
+      </div>
+      <div class="login__option">
+        <stusan-control-button [label]="stateService.videoEnabled ? 'Stop Cam' : 'Start Cam'"
+          [iconBg]="stateService.videoEnabled ? '#FFF' : '#FE724C'" (click)="toggleCam()">
+          <stusan-icon [icon]="stateService.videoEnabled ? 'cam-on' : 'cam-off'" style="width: 24px; height: 24px;"
+            [style.fill]="stateService.videoEnabled ? '#261362' : '#FFF'"></stusan-icon>
+        </stusan-control-button>
+      </div>
+      <div class="login__option">
+        <stusan-control-button label="Settings" (click)="openSettings()">
+          <stusan-icon icon="settings" style="width: 22px; height: 22px; fill: #261362;"></stusan-icon>
+        </stusan-control-button>
+      </div>
+    </div>
+    <div *ngIf="microphoneAccess === 'not_found'">
+      <span>Sorry, but there aren't available audio devices to create/join room</span>
+    </div>
+    <div *ngIf="stateService.isCamBanned">
+      <thevatra-mic-warning-popup></thevatra-mic-warning-popup>
+    </div>
+
+    <p *ngIf="customConfig.homeShowDescription">TheVatra is a White Label WebRTC based platform and can be easily integrated into your business.</p>
+  </div>
+  <footer class="login__footer">
+    <a *ngIf="customConfig.homeShowDescription" href="https://trembit.com/" target="_blank">
+      <img class="login__trembit-logo" src="../assets/stusan/images/trembit-logo.svg" alt="">
+    </a>
+    <span *ngIf="customConfig.homeShowDescription"> Support and development</span>
+  </footer>
+</div>
